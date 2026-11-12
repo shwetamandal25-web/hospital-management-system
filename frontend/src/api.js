@@ -1,13 +1,9 @@
-// Every call to the Node/Express backend goes through here
-// (sends the JWT token automatically)
-
-const API_BASE_URL =
-  import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export async function api(path, { method = "GET", body } = {}) {
   const token = localStorage.getItem("token");
 
-  const res = await fetch(API_BASE_URL + "/api" + path, {
+  const res = await fetch(API_URL + "/api" + path, {
     method,
     headers: {
       "Content-Type": "application/json",
